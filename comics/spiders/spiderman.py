@@ -234,3 +234,4 @@ class SpidermanSpider(CrawlSpider):
             'Sellers_Feedback_Score': self.convert_to_int(response.xpath("//a[contains(@aria-label, '(feedback score)')]/text()").get()),  #complete
             'listing_url': response.url
        }
+
