@@ -19,6 +19,25 @@ USER_AGENT = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTM
 # Obey robots.txt rules
 ROBOTSTXT_OBEY = False
 
+## settings.py
+
+#======================== start of ScrapeOps lines required from 17-01===========
+
+## Add Your ScrapeOps API key
+SCRAPEOPS_API_KEY = SECRET_SCRAPEOPS_API_KEY
+
+## Add In The ScrapeOps Extension
+EXTENSIONS = {
+'scrapeops_scrapy.extension.ScrapeOpsMonitor': 500,
+}
+
+## Update The Download Middlewares
+DOWNLOADER_MIDDLEWARES = {
+'scrapeops_scrapy.middleware.retry.RetryMiddleware': 550,
+'scrapy.downloadermiddlewares.retry.RetryMiddleware': None,
+}
+#======================== end of ScrapeOps lines required from 17-01===========
+
 # Configure maximum concurrent requests performed by Scrapy (default: 16)
 #CONCURRENT_REQUESTS = 32
 
