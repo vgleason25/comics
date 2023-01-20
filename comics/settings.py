@@ -32,13 +32,15 @@ SCRAPEOPS_API_KEY = SECRET_SCRAPEOPS_API_KEY
 
 ## Add In The ScrapeOps Extension
 EXTENSIONS = {
-'scrapeops_scrapy.extension.ScrapeOpsMonitor': 500,
+'scrapeops_scrapy.extension.ScrapeOpsMonitor': 500, #--needed to monitor scraper on ScrapeOps Dashboard 17-03
 }
 
 ## Update The Download Middlewares
+RANDOM_UA_PER_PROXY = True 
 DOWNLOADER_MIDDLEWARES = {
-'scrapeops_scrapy.middleware.retry.RetryMiddleware': 550,
+'scrapeops_scrapy.middleware.retry.RetryMiddleware': 550, #added in 17-03 (step 5 of scrapeops) --needed to monitor scraper on ScrapeOps Dashboard 17-03
 'scrapy.downloadermiddlewares.retry.RetryMiddleware': None,
+'scrapy_user_agents.middlewares.RandomUserAgentMiddleware': 400, #added in 17-09 (step 4 of scrapeops) --rotates through multiple user agents that appear like real visitors to their site
 }
 #======================== end of ScrapeOps lines required from 17-01===========
 
@@ -85,9 +87,10 @@ DOWNLOADER_MIDDLEWARES = {
 
 # Configure item pipelines
 # See https://docs.scrapy.org/en/latest/topics/item-pipeline.html
-# ITEM_PIPELINES = {
-#    'comics.pipelines.SQLitePipeline': 300,
-# }
+ITEM_PIPELINES = {
+   'comics.pipelines.BlankPipeline': 100,
+   'comics.pipelines.PriceToUSDPipeline': 200,
+}
 
 # Enable and configure the AutoThrottle extension (disabled by default)
 # See https://docs.scrapy.org/en/latest/topics/autothrottle.html

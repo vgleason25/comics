@@ -2,6 +2,10 @@
 USE spiderman; --always start in spiderman
 GO
 
+SELECT distinct(sale_currency)
+FROM sale_currency
+WHERE distinct 
+
 SELECT TOP 10 *
 FROM spiderman;
 
