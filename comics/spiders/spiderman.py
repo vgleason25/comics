@@ -10,14 +10,15 @@ from scrapy.loader import ItemLoader # https://www.youtube.com/watch?v=wyE4oDxSc
 from comics.items import ComicsItem #class holding all the items in items.py
 from forex_python.converter import CurrencyRates
 from urllib.parse import urlencode
-from config import SECRET_SCRAPEOPS_API_KEY
+# from config import SECRET_SCRAPEOPS_API_KEY
 
-API_KEY = SECRET_SCRAPEOPS_API_KEY
+# API_KEY = SECRET_SCRAPEOPS_API_KEY
 
-def get_proxy_url(url):
-   payload = {'api_key': API_KEY, 'url': url}
-   proxy_url = 'https://proxy.scrapeops.io/v1/?' + urlencode(payload)
-   return proxy_url
+##having issues with not wanting to have my API visible on GitHub so aborting this
+# def get_proxy_url(url):
+#    payload = {'api_key': API_KEY, 'url': url}
+#    proxy_url = 'https://proxy.scrapeops.io/v1/?' + urlencode(payload)
+#    return proxy_url
 
 class SpidermanSpider(CrawlSpider):
     name = 'spiderman'
