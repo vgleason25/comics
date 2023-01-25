@@ -12,7 +12,7 @@ from forex_python.converter import CurrencyRates
 from urllib.parse import urlencode
 from config import SECRET_SCRAPEOPS_API_KEY
 
-API_KEY = SECRET_SCRAPEOPS_API_KEY
+#API_KEY = SECRET_SCRAPEOPS_API_KEY
 
 def get_proxy_url(url):
    payload = {'api_key': API_KEY, 'url': url}
