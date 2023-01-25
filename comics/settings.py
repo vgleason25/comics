@@ -1,5 +1,5 @@
 import os 
-#from config import SECRET_SCRAPEOPS_API_KEY
+from config import SECRET_SCRAPEOPS_API_KEY
 # Scrapy settings for comics project
 #
 # For simplicity, this file contains only settings considered important or
@@ -26,7 +26,7 @@ ROBOTSTXT_OBEY = False
 #======================== start of ScrapeOps lines required from 17-01===========
 
 ## Add Your ScrapeOps API key
-#SCRAPEOPS_API_KEY = SECRET_SCRAPEOPS_API_KEY
+SCRAPEOPS_API_KEY = SECRET_SCRAPEOPS_API_KEY
 
 
 
