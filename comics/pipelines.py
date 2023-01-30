@@ -8,9 +8,9 @@
 
 from itemadapter import ItemAdapter
 from scrapy.exceptions import DropItem
-from price_parser import Price
+#from price_parser import Price
 from forex_python.converter import CurrencyRates
-# from comics.spiders.spiderman import GBPtoUSD, CADtoUSD, AUDtoUSD, EURtoUSD
+
 
 # from comics.items import orig_sale_currency, sale_price_in_USD
 
@@ -31,8 +31,9 @@ class BlankPipeline:
             return item
 
         else:
+            # return item #lets just try this to see if it works
             #drop item if no title
-            raise DropItem(f"Missing title in {item}")
+            raise DropItem
         
 ## convert prices to USD and floats
 class PriceToUSDPipeline:

@@ -1,42 +1,51 @@
 import scrapy
-from scrapy.linkextractors import LinkExtractor
-from scrapy.spiders import CrawlSpider, Rule
-from time import sleep
-import random
+from scrapy.linkextractors import LinkExtractor #for rules section
+from scrapy.spiders import CrawlSpider, Rule #to go from a regular spider to a crawl spider
+from time import sleep #to wait out page changes
+import random #to get random wait time
 import datetime  # for converting sales dates
 #from comics.itemloaders import ComicsItemLoader # dont actually need this?
 from itemloaders import ItemLoader  # IDK if I need this in addition to the above?
 from scrapy.loader import ItemLoader # https://www.youtube.com/watch?v=wyE4oDxScfE uses this in items.py instead of itemloaders.py
 from comics.items import ComicsItem #class holding all the items in items.py
-from forex_python.converter import CurrencyRates
-from urllib.parse import urlencode
-# from config import SECRET_SCRAPEOPS_API_KEY
+#from forex_python.converter import CurrencyRates dont think i need tha on this page 
+from urllib.parse import urlencode #from 17-09
+from config import SECRET_SCRAPEOPS_API_KEY
 
-# API_KEY = SECRET_SCRAPEOPS_API_KEY
+API_KEY = SECRET_SCRAPEOPS_API_KEY
 
 ##having issues with not wanting to have my API visible on GitHub so aborting this
-# def get_proxy_url(url):
-#    payload = {'api_key': API_KEY, 'url': url}
-#    proxy_url = 'https://proxy.scrapeops.io/v1/?' + urlencode(payload)
-#    return proxy_url
+def get_proxy_url(url):
+   payload = {'api_key': API_KEY, 'url': url}
+   proxy_url = 'https://proxy.scrapeops.io/v1/?' + urlencode(payload)
+   return proxy_url
 
 class SpidermanSpider(CrawlSpider):
     name = 'spiderman'
-    allowed_domains = ['ebay.com']
-    # start_urls = ['']
-    user_agent = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/107.0.0.0 Safari/537.36'
+    allowed_domains = ['ebay.com']  #try without this for 17-09 "Integrating ScrapeOps" 
+    start_urls = ['']
+    user_agent = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/107.0.0.0 Safari/537.36'  #try without this for 7-09 "Integrating ScrapeOps" 
 
 
-    #below was attempted from 17-09 "Integrating ScrapeOps" it didnt work
+    # #below was attempted from 17-09 "Integrating ScrapeOps" 
     # def start_requests(self):
     #     start_url = "https://www.ebay.com/sch/259104/i.html?_from=R40&_nkw=spiderman&LH_Sold=1&LH_Complete=1"
     #     yield scrapy.Request(url=get_proxy_url(start_url), callback=self.parse_item)
 
+    #modified to include headers and drop callback from 17-09 "Integrating ScrapeOps" 
     def start_requests(self):
-        yield scrapy.Request(url="https://www.ebay.com/sch/259104/i.html?_from=R40&_nkw=spiderman&LH_Sold=1&LH_Complete=1",
-                             headers={
+        start_url = "https://www.ebay.com/sch/259104/i.html?_from=R40&_nkw=spiderman&LH_Sold=1&LH_Complete=1"
+        yield scrapy.Request(url=get_proxy_url(start_url), headers={
                                  'User-Agent': self.user_agent
                              })
+
+    # #ORIGINAL - it works 
+    # def start_requests(self):
+    #     yield scrapy.Request(url="https://www.ebay.com/sch/259104/i.html?_from=R40&_nkw=spiderman&LH_Sold=1&LH_Complete=1",
+    #                          headers={
+    #                              'User-Agent': self.user_agent
+    #                          })
+
 
     rules = (
         Rule(LinkExtractor(restrict_xpaths="//ul[@class='srp-results srp-list clearfix']/li[contains(@class, 's-item s-item__pl-on-bottom')]/div/div/a"),
