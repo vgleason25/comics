@@ -26,8 +26,7 @@ ROBOTSTXT_OBEY = False
 #======================== start of ScrapeOps lines required from 17-01===========
 
 ## Add Your ScrapeOps API key
-API_KEY = SECRET_SCRAPEOPS_API_KEY 
-
+API_KEY = SECRET_SCRAPEOPS_API_KEY
 
 
 ## Add In The ScrapeOps Extension
