@@ -8,9 +8,9 @@ import datetime  # for converting sales dates
 from itemloaders import ItemLoader  # IDK if I need this in addition to the above?
 from scrapy.loader import ItemLoader # https://www.youtube.com/watch?v=wyE4oDxScfE uses this in items.py instead of itemloaders.py
 from comics.items import ComicsItem #class holding all the items in items.py
-#from forex_python.converter import CurrencyRates dont think i need tha on this page 
-from urllib.parse import urlencode #from 17-09
-from config import SECRET_SCRAPEOPS_API_KEY #to test
+from forex_python.converter import CurrencyRates
+from urllib.parse import urlencode
+from config import SECRET_SCRAPEOPS_API_KEY
 
 API_KEY = SECRET_SCRAPEOPS_API_KEY
 
@@ -27,7 +27,7 @@ class SpidermanSpider(CrawlSpider):
     user_agent = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/107.0.0.0 Safari/537.36'  #try without this for 7-09 "Integrating ScrapeOps" 
 
 
-    # #below was attempted from 17-09 "Integrating ScrapeOps" --never got it to work
+    #below was attempted from 17-09 "Integrating ScrapeOps" it didnt work
     # def start_requests(self):
     #     start_url = "https://www.ebay.com/sch/259104/i.html?_from=R40&_nkw=spiderman&LH_Sold=1&LH_Complete=1"
     #     yield scrapy.Request(url=get_proxy_url(start_url), callback=self.parse_item)
