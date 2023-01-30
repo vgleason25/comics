@@ -10,7 +10,7 @@ from scrapy.loader import ItemLoader # https://www.youtube.com/watch?v=wyE4oDxSc
 from comics.items import ComicsItem #class holding all the items in items.py
 #from forex_python.converter import CurrencyRates dont think i need tha on this page 
 from urllib.parse import urlencode #from 17-09
-from config import SECRET_SCRAPEOPS_API_KEY
+from config import SECRET_SCRAPEOPS_API_KEY #to test
 
 API_KEY = SECRET_SCRAPEOPS_API_KEY
 
@@ -27,7 +27,7 @@ class SpidermanSpider(CrawlSpider):
     user_agent = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/107.0.0.0 Safari/537.36'  #try without this for 7-09 "Integrating ScrapeOps" 
 
 
-    # #below was attempted from 17-09 "Integrating ScrapeOps" 
+    # #below was attempted from 17-09 "Integrating ScrapeOps" --never got it to work
     # def start_requests(self):
     #     start_url = "https://www.ebay.com/sch/259104/i.html?_from=R40&_nkw=spiderman&LH_Sold=1&LH_Complete=1"
     #     yield scrapy.Request(url=get_proxy_url(start_url), callback=self.parse_item)
